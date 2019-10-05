@@ -2,10 +2,6 @@
 
 Desktop-oriented Apt management role for Debian-based systems.
 
-## Requirements
-
-No special requirements.
-
 ## Role Variables
 
 | Variable name      | Default value | Description |
@@ -56,13 +52,10 @@ in the `apt_repositories` list.
       roles:
         - role: ansible-role-apt
 
-License
--------
+## License
 
-BSD
+GPLv3
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+Christopher Torgalson
