@@ -1,4 +1,6 @@
-# Role Name
+# Ansible Role Apt
+
+[![Build Status](https://travis-ci.com/ctorgalson/ansible-role-apt.svg?branch=master)](https://travis-ci.com/ctorgalson/ansible-role-apt)
 
 Desktop-oriented Apt management role for Debian-based systems.
 
