@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Christopher Torgalson
-  description: Desktop-oriented Apt management role for debian-based systems.
+  description: Desktop-oriented Apt management role for Debian-based systems.
   company: Bedlam Hotel
 
   license: GPLv3

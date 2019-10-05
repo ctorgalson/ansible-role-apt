@@ -14,3 +14,6 @@
   loop: "{{ apt_keys }}"
   loop_control:
     loop_var: "apt_key"
+
+- name: Update package cache immediately.
+  meta: "flush_handlers"

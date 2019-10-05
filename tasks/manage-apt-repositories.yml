@@ -11,3 +11,6 @@
   loop: "{{ apt_repositories }}"
   loop_control:
     loop_var: "apt_repository"
+
+- name: Update package cache immediately.
+  meta: "flush_handlers"
