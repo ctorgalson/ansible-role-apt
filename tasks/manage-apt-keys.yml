@@ -1,0 +1,16 @@
+---
+# apt key management tasks for ansible-role-apt
+
+- name: Manage apt keys.
+  apt_key:
+    data: "{{ apt_key.data | default(omit) }}"
+    file: "{{ apt_key.file | default(omit) }}"
+    id: "{{ apt_key.id | default(omit) }}"
+    keyring: "{{ apt_key.keyring | default(omit) }}"
+    keyserver: "{{ apt_key.keyserver | default(omit) }}"
+    state: "{{ apt_key.state | default(omit) }}"
+    url: "{{ apt_key.url | default(omit) }}"
+    validate_certs: "{{ apt_key.validate_certs | default(omit) }}"
+  loop: "{{ apt_keys }}"
+  loop_control:
+    loop_var: "apt_key"

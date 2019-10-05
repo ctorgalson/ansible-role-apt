@@ -1,2 +1,28 @@
 ---
 # tasks file for ansible-role-apt
+#
+# We're updating the cache:
+#  - before any other action,
+#  - after working with apt repositories,
+#  - after working with apt packages.
+#
+- name: Update package cache.
+  apt:
+    update_cache: true
+
+- name: Include apt key management tasks.
+  include_tasks: "manage-apt-keys.yml"
+
+- name: Include apt repository management tasks.
+  include_tasks: "manage-apt-repositories.yml"
+
+- name: Update package cache.
+  apt:
+    update_cache: true
+
+- name: Include apt package management tasks.
+  include_tasks: "manage-apt-packages.yml"
+
+- name: Update package cache.
+  apt:
+    update_cache: true
