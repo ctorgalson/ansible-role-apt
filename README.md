@@ -4,6 +4,13 @@
 
 Desktop-oriented Apt management role for Debian-based systems.
 
+This role is effectively a simple wrapper for Ansible's three main Apt-related
+modules, `apt`, `apt_key`, and `apt_repository`. This enables these modules to
+be used in playbooks simply by providing variables to the playbook. If your
+apt-related requirements involve more than simple key, repository, and package
+management (and especially if you need to manage servers or many machines),
+you may find one of the other Galaxy roles more suitable.
+
 ## Role Variables
 
 | Variable name      | Default value | Description |
@@ -19,16 +26,16 @@ All properties of Ansible's `apt_key` module are supported for items in the
 
 ### Available `apt_packages` properties per-item
 
-At this time, the following properties are suppored--note that as with using
-Ansible's Apt module directly, some properties cannot be used at the same time
-for the same item (e.g. `name` and `deb`):
+At this time, the following [Apt module](https://docs.ansible.com/ansible/latest/modules/apt_module.html) properties are supported--note that as with using the Apt module directly, some
+properties are mutually incompatible when used on the same item (e.g. `name`
+and `deb`):
 
-  - deb
-  - dpkg_options
-  - force_apt_get
-  - install_recommends
-  - name
-  - state
+  - `deb`
+  - `dpkg_options`
+  - `force_apt_get`
+  - `install_recommends`
+  - `name`
+  - `state`
 
 ### Available `apt_repositories` properties per-item
 
