@@ -1,40 +1,60 @@
-Role Name
-=========
+# Role Name
 
-A brief description of the role goes here.
+Desktop-oriented Apt management role for Debian-based systems.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+No special requirements.
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+| Variable name      | Default value | Description |
+|--------------------|---------------|-------------|
+| `apt_keys`         | `[]` | A list of apt keys to add, remove, or update. |
+| `apt_packages`     | `[]` | A list of apt packages to add, remove, or update. |
+| `apt_repositories` | `[]` | A list of apt repositories to add, remove, or update. |
 
-Dependencies
-------------
+### Available `apt_keys` properties per-item
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+All properties of Ansible's `apt_key` module are supported for items in the
+`apt_keys` list.
 
-Example Playbook
-----------------
+### Available `apt_packages` properties per-item
 
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
+At this time, the following properties are suppored--note that as with using
+Ansible's Apt module directly, some properties cannot be used at the same time
+for the same item (e.g. `name` and `deb`):
 
-    - hosts: servers
+  - deb
+  - dpkg_options
+  - force_apt_get
+  - install_recommends
+  - name
+  - state
+
+### Available `apt_repositories` properties per-item
+
+All properties of Ansible's `apt_repository` module are supported for items
+in the `apt_repositories` list.
+
+## Example Playbook
+
+    ---
+    - name: Test playbook to install Vim and Google Chrome.
+      hosts: all
+      vars:
+        apt_packages:
+          - name: "google-chrome-stable"
+          - name: "vim"
+        apt_keys:
+          - url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+            state: "present"
+        apt_repositories:
+          - repo: "deb http://dl.google.com/linux/chrome/deb/ stable main"
+            update_cache: true
+            state: "present"
       roles:
-         - { role: ansible-role-apt, x: 42 }
+        - role: ansible-role-apt
 
 License
 -------
