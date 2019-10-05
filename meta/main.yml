@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Christopher Torgalson
+  description: Desktop-oriented Apt management role for Debian-based systems.
+  company: Bedlam Hotel
+
+  license: GPLv3
+
+  min_ansible_version: 2.5
+
+  role_name: apt
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - apt
+    - system
+
+dependencies: []

@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-apt
+
+apt_keys: []
+apt_packages: []
+apt_repositories: []

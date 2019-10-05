@@ -1,0 +1,25 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    apt_packages:
+      - name: "google-chrome-stable"
+      - name: "tree"
+      - name: "vim"
+      - name: "yarn"
+      - deb: "https://zoom.us/client/latest/zoom_amd64.deb"
+    apt_keys:
+      - url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+        state: "present"
+      - url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+        state: "present"
+
+    apt_repositories:
+      - repo: "deb http://dl.google.com/linux/chrome/deb/ stable main"
+        update_cache: true
+        state: "present"
+      - repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+        update_cache: true
+        state: present
+  roles:
+    - role: ansible-role-apt

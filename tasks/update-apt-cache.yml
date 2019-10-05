@@ -1,0 +1,6 @@
+---
+# apt cache update task for ansible-role-apt
+
+- name: Update apt package cache.
+  apt:
+    update_cache: true

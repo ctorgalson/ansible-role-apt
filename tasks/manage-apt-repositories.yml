@@ -1,0 +1,16 @@
+---
+# apt repository management tasks for ansible-role-apt
+
+- name: Manage apt repositories.
+  apt_repository:
+    codename: "{{ apt_repository.codename | default(omit) }}"
+    mode: "{{ apt_repository.mode | default(omit) }}"
+    repo: "{{ apt_repository.repo | default(omit) }}"
+    state: "{{ apt_statesitory.state | default(omit) }}"
+    validate_certs: "{{ apt_validate_certssitory.validate_certs | default(omit) }}"
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    loop_var: "apt_repository"
+
+- name: Update package cache immediately.
+  meta: "flush_handlers"

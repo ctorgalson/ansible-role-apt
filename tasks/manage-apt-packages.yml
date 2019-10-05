@@ -1,0 +1,19 @@
+---
+# apt package management tasks for ansible-role-apt
+
+# We don't technically need to use a loop here, but using one allows us to set
+# other Apt-module settings per-item.
+- name: Manage apt packages.
+  apt:
+    deb: "{{ apt_package.deb | default(omit) }}"
+    dpkg_options: "{{ apt_package.dpkg_options | default(omit) }}"
+    force_apt_get: "{{ apt_package.force_apt_get | default(omit) }}"
+    install_recommends: "{{ apt_package.install_recommends | default(omit) }}"
+    name: "{{ apt_package.name | default(omit) }}"
+    state: "{{ apt_package.state | default(omit) }}"
+  loop: "{{ apt_packages }}"
+  loop_control:
+    loop_var: "apt_package"
+
+- name: Update package cache immediately.
+  meta: "flush_handlers"
