@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install required packages for testing.
+      apt:
+        name:
+          - "apt-transport-https"
+          - "xz-utils"
